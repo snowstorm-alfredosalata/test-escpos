@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- POS Configuration Form View -->
+        <record id="view_pos_config_form_printer" model="ir.ui.view">
+            <field name="name">POS Configuration - Printer Settings</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id">point_of_sale.pos_config_view_form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Printer Configuration" name="printer_config">
+                        <!-- Fiscal Printer Section -->
+                        <group string="Fiscal Printer (SF20)" name="fiscal_printer">
+                            <field name="fiscal_printer_enabled" />
+                            <field name="fiscal_printer_ip" 
+                                attrs="{'required': [('fiscal_printer_enabled', '=', True)]}" />
+                            <field name="fiscal_printer_port" />
+                            <field name="fiscal_printer_timeout" />
+                            <field name="fiscal_error_fail_safe" />
+                        </group>
+
+                        <separator string="Non-Fiscal Printer (ESC/POS)" />
+
+                        <!-- Non-Fiscal Printer Section -->
+                        <group string="Non-Fiscal Printer (ESC/POS)" name="nonfiscal_printer">
+                            <field name="nonfiscal_printer_enabled" />
+                            <field name="nonfiscal_printer_ip" 
+                                attrs="{'required': [('nonfiscal_printer_enabled', '=', True)]}" />
+                            <field name="nonfiscal_printer_port" />
+                            <field name="nonfiscal_printer_timeout" />
+                            <field name="comanda_printer_width" />
+                            <field name="comanda_auto_cut" />
+                            <field name="comanda_auto_open_drawer" />
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

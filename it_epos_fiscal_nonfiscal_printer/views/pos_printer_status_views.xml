@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- POS Printer Status Form View -->
+        <record id="view_pos_printer_status_form" model="ir.ui.view">
+            <field name="name">POS Printer Status Form</field>
+            <field name="model">pos.printer.status</field>
+            <field name="arch" type="xml">
+                <form string="Printer Status">
+                    <group>
+                        <group>
+                            <field name="pos_config_id" />
+                            <field name="session_id" />
+                            <field name="printer_type" />
+                            <field name="status" />
+                        </group>
+                        <group>
+                            <field name="last_check_time" />
+                            <field name="response_time_ms" />
+                            <field name="consecutive_errors" />
+                        </group>
+                    </group>
+                    <field name="status_message" />
+                    <group string="Fiscal-Specific" name="fiscal_info">
+                        <field name="fiscal_state" />
+                        <field name="last_z_report_date" />
+                        <field name="last_receipt_number" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- POS Printer Status Tree View -->
+        <record id="view_pos_printer_status_tree" model="ir.ui.view">
+            <field name="name">POS Printer Status Tree</field>
+            <field name="model">pos.printer.status</field>
+            <field name="arch" type="xml">
+                <tree string="Printer Status" decoration-danger="status in ('error', 'offline')"
+                    decoration-warning="status == 'warning'" decoration-success="status == 'ok'">
+                    <field name="pos_config_id" />
+                    <field name="printer_type" />
+                    <field name="status" />
+                    <field name="response_time_ms" />
+                    <field name="last_check_time" />
+                    <field name="consecutive_errors" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- POS Printer Status Search View -->
+        <record id="view_pos_printer_status_search" model="ir.ui.view">
+            <field name="name">POS Printer Status Search</field>
+            <field name="model">pos.printer.status</field>
+            <field name="arch" type="xml">
+                <search string="Printer Status">
+                    <field name="pos_config_id" />
+                    <field name="printer_type" />
+                    <filter name="ok" string="OK" domain="[('status', '=', 'ok')]" />
+                    <filter name="error" string="Error" domain="[('status', '=', 'error')]" />
+                    <filter name="offline" string="Offline" domain="[('status', '=', 'offline')]" />
+                    <separator />
+                    <filter name="fiscal" string="Fiscal Printer" domain="[('printer_type', '=', 'fiscal')]" />
+                    <filter name="nonfiscal" string="Non-Fiscal Printer" domain="[('printer_type', '=', 'nonfiscal')]" />
+                </search>
+            </field>
+        </record>
+
+        <!-- Action to view POS Printer Status -->
+        <record id="action_pos_printer_status" model="ir.actions.act_window">
+            <field name="name">POS Printer Status</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pos.printer.status</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help">Monitor fiscal and non-fiscal printer status in real-time.</field>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_pos_printer_status"
+            name="Printer Status"
+            parent="point_of_sale.menu_point_of_sale"
+            action="action_pos_printer_status"
+            sequence="100" />
+    </data>
+</odoo>

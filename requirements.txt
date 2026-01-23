@@ -1,0 +1,22 @@
+# Odoo dependencies and requirements for it_epos_fiscal_nonfiscal_printer
+
+# Core Odoo 19 (already included in Odoo installation)
+# odoo>=19.0,<20.0
+
+# This module requires:
+# - point_of_sale (built-in Odoo module)
+# - base (built-in Odoo module)
+
+# Optional: For testing and development
+pytest>=7.0.0
+pytest-cov>=3.0.0
+mock>=4.0.0
+requests>=2.28.0
+
+# Python standard library (no installation needed):
+# - socket (TCP/IP communication)
+# - logging (logging)
+# - typing (type hints)
+# - datetime (timestamps)
+# - json (data serialization)
+# - re (regex patterns)

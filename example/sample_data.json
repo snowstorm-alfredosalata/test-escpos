@@ -1,0 +1,45 @@
+{
+  "printers": {
+    "comanda": {
+      "driver": "escpos",
+      "ip": "192.168.1.50",
+      "port": 9100
+    },
+    "fiscale": {
+      "driver": "dado_rt30",
+      "ip": "192.168.1.60",
+      "port": 9100
+    }
+  },
+
+  "order": {
+    "id": "A12345",
+    "datetime": "2026-01-23 21:37",
+
+    "service": {
+      "type": "CAMBUSA",
+      "tavolo": 12,
+      "sala": "VIP",
+      "coperti": 4,
+      "operatore": "Marco"
+    },
+
+    "lines": [
+      {
+        "qty": 2,
+        "description": "Gin Tonic",
+        "price": 8.00,
+        "vat": 22,
+        "serve_time": "21:45",
+        "notes": "Poco ghiaccio"
+      }
+    ],
+
+    "payments": [
+      {
+        "type": "CONTANTI",
+        "amount": 16.00
+      }
+    ]
+  }
+}
