@@ -7,41 +7,85 @@
             <field name="model">pos.config</field>
             <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
             <field name="arch" type="xml">
-                <xpath expr="//div[@id='page_advanced']" position="after">
-                    <div class="o_notebook_page" id="page_printer_config">
-                        <h2>Printer Configuration</h2>
-                        
-                        <!-- Fiscal Printer Section -->
-                        <group string="Fiscal Printer (SF20)" name="fiscal_printer">
+                <xpath expr="//div[@class='row mt16 o_settings_container']" position="after">
+                    <div class="row mt16 o_settings_container">
+                        <!-- Fiscal Printer (SF20) Setting -->
+                        <setting string="Fiscal Printer (SF20)" help="Configure SF20 fiscal printer for electronic receipts">
                             <field name="fiscal_printer_enabled" />
-                            <field name="fiscal_printer_ip" 
-                                attrs="{'required': [('fiscal_printer_enabled', '=', True)], 'invisible': [('fiscal_printer_enabled', '=', False)]}" />
-                            <field name="fiscal_printer_port" 
-                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
-                            <field name="fiscal_printer_timeout" 
-                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
-                            <field name="fiscal_error_fail_safe" 
-                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
-                        </group>
+                            <div class="content-group" invisible="not fiscal_printer_enabled">
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <field name="fiscal_printer_ip" placeholder="Fiscal Printer IP Address" class="w-100 pt-1" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="fiscal_printer_port" placeholder="Port (default 9100)" class="w-100 pt-1" />
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Timeout (seconds)" for="fiscal_printer_timeout"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="fiscal_printer_timeout"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Fail Safe Mode" for="fiscal_error_fail_safe"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="fiscal_error_fail_safe"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
 
-                        <separator string="Non-Fiscal Printer (ESC/POS)" />
-
-                        <!-- Non-Fiscal Printer Section -->
-                        <group string="Non-Fiscal Printer (ESC/POS)" name="nonfiscal_printer">
+                        <!-- Non-Fiscal Printer (ESC/POS) Setting -->
+                        <setting string="Non-Fiscal Printer (ESC/POS)" help="Configure ESC/POS printer for kitchen orders">
                             <field name="nonfiscal_printer_enabled" />
-                            <field name="nonfiscal_printer_ip" 
-                                attrs="{'required': [('nonfiscal_printer_enabled', '=', True)], 'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                            <field name="nonfiscal_printer_port" 
-                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                            <field name="nonfiscal_printer_timeout" 
-                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                            <field name="comanda_printer_width" 
-                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                            <field name="comanda_auto_cut" 
-                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                            <field name="comanda_auto_open_drawer" 
-                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
-                        </group>
+                            <div class="content-group" invisible="not nonfiscal_printer_enabled">
+                                <div class="row mb-2">
+                                    <div class="col-lg-6">
+                                        <field name="nonfiscal_printer_ip" placeholder="Non-Fiscal Printer IP Address" class="w-100 pt-1" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="nonfiscal_printer_port" placeholder="Port (default 9100)" class="w-100 pt-1" />
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Timeout (seconds)" for="nonfiscal_printer_timeout"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="nonfiscal_printer_timeout"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Comanda Width (chars)" for="comanda_printer_width"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="comanda_printer_width"/>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Auto Cut" for="comanda_auto_cut"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="comanda_auto_cut"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 o_light_label">
+                                        <label string="Auto Open Drawer" for="comanda_auto_open_drawer"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <field name="comanda_auto_open_drawer"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
                     </div>
                 </xpath>
             </field>
