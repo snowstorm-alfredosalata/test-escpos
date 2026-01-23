@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <!-- POS Configuration Form View -->
+        <!-- POS Configuration Form View - Extended with Printer Settings -->
         <record id="view_pos_config_form_printer" model="ir.ui.view">
             <field name="name">POS Configuration - Printer Settings</field>
             <field name="model">pos.config</field>
-            <field name="inherit_id">point_of_sale.pos_config_view_form</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
             <field name="arch" type="xml">
-                <xpath expr="//notebook" position="inside">
-                    <page string="Printer Configuration" name="printer_config">
+                <xpath expr="//div[@id='page_advanced']" position="after">
+                    <div class="o_notebook_page" id="page_printer_config">
+                        <h2>Printer Configuration</h2>
+                        
                         <!-- Fiscal Printer Section -->
                         <group string="Fiscal Printer (SF20)" name="fiscal_printer">
                             <field name="fiscal_printer_enabled" />
                             <field name="fiscal_printer_ip" 
-                                attrs="{'required': [('fiscal_printer_enabled', '=', True)]}" />
-                            <field name="fiscal_printer_port" />
-                            <field name="fiscal_printer_timeout" />
-                            <field name="fiscal_error_fail_safe" />
+                                attrs="{'required': [('fiscal_printer_enabled', '=', True)], 'invisible': [('fiscal_printer_enabled', '=', False)]}" />
+                            <field name="fiscal_printer_port" 
+                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
+                            <field name="fiscal_printer_timeout" 
+                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
+                            <field name="fiscal_error_fail_safe" 
+                                attrs="{'invisible': [('fiscal_printer_enabled', '=', False)]}" />
                         </group>
 
                         <separator string="Non-Fiscal Printer (ESC/POS)" />
@@ -25,14 +30,19 @@
                         <group string="Non-Fiscal Printer (ESC/POS)" name="nonfiscal_printer">
                             <field name="nonfiscal_printer_enabled" />
                             <field name="nonfiscal_printer_ip" 
-                                attrs="{'required': [('nonfiscal_printer_enabled', '=', True)]}" />
-                            <field name="nonfiscal_printer_port" />
-                            <field name="nonfiscal_printer_timeout" />
-                            <field name="comanda_printer_width" />
-                            <field name="comanda_auto_cut" />
-                            <field name="comanda_auto_open_drawer" />
+                                attrs="{'required': [('nonfiscal_printer_enabled', '=', True)], 'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
+                            <field name="nonfiscal_printer_port" 
+                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
+                            <field name="nonfiscal_printer_timeout" 
+                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
+                            <field name="comanda_printer_width" 
+                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
+                            <field name="comanda_auto_cut" 
+                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
+                            <field name="comanda_auto_open_drawer" 
+                                attrs="{'invisible': [('nonfiscal_printer_enabled', '=', False)]}" />
                         </group>
-                    </page>
+                    </div>
                 </xpath>
             </field>
         </record>
