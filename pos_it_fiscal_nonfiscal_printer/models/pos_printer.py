@@ -25,12 +25,12 @@ class PosPrinter(models.Model):
         default=False,
         help='Delegate printing to an IoT Box device instead of direct connection'
     )
-    iot_device_id = fields.Many2one(
-        'iot.device',
-        string='IoT Device',
-        help='IoT device to use for printing (requires IoT Box module)',
-        ondelete='set null'
-    )
+    # iot_device_id = fields.Many2one(
+    #     'iot.device',
+    #     string='IoT Device',
+    #     help='IoT device to use for printing (requires IoT Box module)',
+    #     ondelete='set null'
+    # )
 
     # Direct TCP connection settings
     host = fields.Char(
