@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_pos_printer_form_drivers" model="ir.ui.view">
+        <field name="name">Preparation Printer</field>
+        <field name="model">pos.printer</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_printer_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='proxy_ip']" position="after">
+                <field name="host"/>
+                <field name="port"/>
+                <field name="timeout"/>
+            </xpath>
+            <xpath expr="//widget[@name='point_of_sale_test_epos']" position="replace">
+                <widget name="point_of_sale_test_epos" invisible="printer_type == 'iot'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

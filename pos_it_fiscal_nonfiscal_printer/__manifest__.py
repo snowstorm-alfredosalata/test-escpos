@@ -5,7 +5,9 @@
     'category': 'Point of Sale',
     'author': 'Generated',
     'depends': ['point_of_sale'],
-    'data': [],
+    'data': [
+        'views/pos_printer_views.xml',
+    ],
     'installable': True,
     'application': False,
 }
